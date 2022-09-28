@@ -7,7 +7,7 @@ const createToken = (id, username) => {
 }
 
 module.exports.signupHandler = async(req, res, next) => {
-    res.set('Acces-Control-Allow-Origin', '*');
+    // res.set('Acces-Control-Allow-Origin', '*');
     console.log(req.body);
     res.send({'errors': 0, 'status': 'working'});
 }

@@ -1,21 +1,19 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/authRoutes.js');
+const cors = require('cors');
 const app = express();
 
 
 //middleware
-app.use(express.urlencoded());
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
+app.use(cors({origin: "http://localhost:3000"}));
 
 
 
-// app.get("/api/mockdata", (req, res) => {
-//     res.set('Access-Control-Allow-Origin', '*');
-//     res.json({'status': 'working', 'testing' : true});
-// });
 
 
 // Processing requests using the routes

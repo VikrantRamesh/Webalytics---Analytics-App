@@ -2,8 +2,10 @@ const {Router} = require('express');
 const router = Router();
 const authController = require('../controllers/authController.js');
 
-router.get('/api/signup', (req, res, next) => {
+router.post('/api/signup', (req, res, next) => {
     // res.send()
+    res.set('Access-Control-Allow-Origin', '*');
+    console.log("Request reached");
     authController.signupHandler(req, res, next);
 });
 
