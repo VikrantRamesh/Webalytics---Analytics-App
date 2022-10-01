@@ -11,6 +11,9 @@ An adaptable and flexible analytics application which assists a webpage owner to
 -  The purchases and transactions initiated in the clients webpage would be recorded and delivered to the client in a simplified and easily interpretable format.
 -  The number of orders placed and the value of the orders, along with the time period within which maximum transactions takes place would be available to the client.
 
+# The Problem It Solves
+Analytics make businesses understand what they are doing right and what they are doing wrong. In addition, it displays what is working and what is not working on all sides of the company. The action of measuring instead of guessing enables businesses to attain almost a sure thing. Webalytics allows discovering content that the audience really likes and shares, thereby growing the company's profit by leaps and bounds. Our platfrom offers the knowledge to streamline business activities and results in better outcome from those activities. Right from covering the network traffic and the time spent by each user along with providing info about any profitable action, Webalytics empowers it's clients to take their businesses to the next level. 
+
 # Tech Stack Used
 
 -  ReactJS
