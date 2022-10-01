@@ -1,4 +1,4 @@
-# Webalytics-Analytics-App
+# Webalytics-The Analytics App
 An adaptable and flexible analytics application which assists a webpage owner to review the statistical usage of their web application, in a straight forward and understandable format.The beneficial data points, fetched by the app is reviewed and recorded by the owners, which could be used for various purposes.![image](https://user-images.githubusercontent.com/89332177/193409477-df50e39f-1f6c-4a12-9d51-bf023c32961d.png)
 
 ---
