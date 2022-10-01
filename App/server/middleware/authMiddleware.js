@@ -11,11 +11,13 @@ const requireAuth = (req, res, next) => {
                 console.log(err.message);
                 res.json({error: true, message: err.message});
             }else{
-                console.log(decodedToken);
+                // console.log(decodedToken);
+                console.log("Authorized");
                 next(); // Calling the next middleware in line
             }
         })
     }else{
+        console.log("Unauthorized Login");
         res.json({error : true, message: 'Login Please'});
     }
 }
