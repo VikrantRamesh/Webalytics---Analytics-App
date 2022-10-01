@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import useApiCall from './hooks/useApiCall';
+import useGetCookie from "./hooks/useGetCookie";
 import { Link } from "react-router-dom";
 
 const BackendTesting = () => {
@@ -7,6 +8,7 @@ const BackendTesting = () => {
     const [data, setData] = useState('');
     const [response, setResponse] = useState('');
     const [value, setValue] = useState('');
+    const cookieFetcher = useGetCookie();
     
 
     
@@ -44,7 +46,9 @@ const BackendTesting = () => {
     }
 
     const APIKeyHandler = async() => {
-        const reqData = await apiCaller({endpoint: 'generateAPIkey', query: {username: 'Dolph'}}, {}, 'POST', 'application/json');
+        const username = cookieFetcher('username');
+        console.log(username);
+        const reqData = await apiCaller({endpoint: 'generateAPIkey', query: {username : username.data}}, {}, 'POST', 'application/json');
         setResponse(JSON.stringify(reqData));
     
     }
