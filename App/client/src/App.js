@@ -4,6 +4,7 @@ import Form from './Form';
 import Loginform from './Loginform';
 import { BrowserRouter as Router, Routes, Route, Switch, Link} from "react-router-dom";
 import BackendTesting from './BackendTesting';
+import ProtectedComponent from './ProtectedComponent';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/Loginform" element={<Loginform />} />
           {/* Backend Testing route */}
           <Route path="/test" element={<BackendTesting/>} />
+          <Route path="/protected" element={<ProtectedComponent/>} />
         </Routes>
       </Router>
     </div>

@@ -1,31 +1,16 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useState} from "react";
 import useApiCall from './hooks/useApiCall';
-import Form from "./Form";
+import { Link } from "react-router-dom";
 
 const BackendTesting = () => {
     const apiCaller = useApiCall();
     const [data, setData] = useState('');
     const [response, setResponse] = useState('');
     const [value, setValue] = useState('');
-    const [requestState, setRequestState] = useState(false);
+    
 
-    const nameRef = useRef('');
-    const emailRef = useRef('');
-    const domainRef = useRef('');
-    const passwordRef = useRef('');
-
-    // const fn = async() => {
-    //     const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
-    //     const data = await res.json();
-    //     return data;
-    // }
-
-    // useEffect(async () => {
-    //     const reqData = await apiCaller({
-    //         endpoint: 'signup'
-    //     });
-    //     setResponse(reqData);
-    // }, [requestState]);
+    
+   
 
 
     const apiCallerWrapper = async() => {
@@ -36,20 +21,27 @@ const BackendTesting = () => {
         setData(reqData);
     }
 
-    const submitForm = async () => {
-        const username = nameRef.current.value;
-        const email = emailRef.current.value;
-        const domain = domainRef.current.value;
-        const password = passwordRef.current.value;
+    const signupTest = async () => {
+        const username = 'jack';
+        const email =  'jacktech@gmail.com';
+        const domain = 'www.jacktech.dev';
+        const password = 'abcde12345#';
         
-        const reqData = await apiCaller({
-            method: 'GET',
-            endpoint: 'signup',
-            body : JSON.stringify({username, email, domain, password})
-        })
+        const reqData = await apiCaller({endpoint: 'signup', query: {}},{username, email,domain,password}, 'POST', 'application/json');
+        setResponse(JSON.stringify(reqData));
+    }
+    
+    const loginTest = async () => {
+        const username = 'jack';
+        const password = 'abcde12345#';
+        const reqData = await apiCaller({endpoint: 'login', query: {}},{username, password}, 'POST', 'application/json');
+        setResponse(JSON.stringify(reqData));
     }
 
-
+    const testFunc = async () => {
+        const reqData = await apiCaller({endpoint: 'profile', query: {username : value}}, {}, 'POST', 'application/json');
+        setResponse(JSON.stringify(reqData));
+    }
     
 
 
@@ -57,19 +49,32 @@ const BackendTesting = () => {
         <>
             <div>
                 <h1>Testing route, hit the button to test the API</h1>
-                <button type="button" onClick={apiCallerWrapper}>Get Data</button>
-                <div>{JSON.stringify(data) || ''}</div>
+                {/* <button type="button" onClick={apiCallerWrapper}>Get Data</button>
+                <div>{JSON.stringify(data) || ''}</div> */}
             </div>
 
-            <section style={{'margin': '5em', 'padding': '1em', 'border': '2px solid black', 'display': 'flex', 'flexDirection': 'column', 'alignItems': 'center', 'justifyContent': 'center'}}>
-                <Form></Form>
-                <button type="button" onClick={submitForm}>Submit</button>
+            <section style={{'maxWidth': '90%' ,'margin': '5em', 'height': 'fit-content', 'padding': '1em', 'border': '2px solid black', 'display': 'flex', 'flexDirection': 'column', 'alignItems': 'center', 'justifyContent': 'center'}}>
+                <button type="button" onClick={signupTest}>Sign up Test</button>
+                <br></br>
+                <button type="button" onClick={loginTest}>Login in Test</button>
+                <br></br>
+               <div>
+                <label htmlFor="customer">Customer Name : </label>
+                <input type="text" onChange={(e) => setValue(e.target.value)} id="customer"></input>
+                <button type="button" id="getDetails" onClick={testFunc} style={{'marginLeft' : '1em'}}>GO</button>
+               </div>
+                <br></br>
+               <Link to="/protected">Protected Route</Link>
+                <br></br>
+                <button type="button" onClick={() => setResponse('')}>Reset</button>
                 
+            <div style={{'margin': '2em', 'maxWidth': '80%', 'height': 'fit-content', 'background': '#cccccc', 'padding': '1em'}}>
+                <span style={{'fontSize': '1.4em', 'fontWeight': 'bold', 'width': '80%', 'height': 'fit-content', 'wordWrap' : 'break-word'}}>
+                    TEST STATUS : {response || ''}
+                </span>
+            </div>
             </section>
 
-            <div>
-                <h2>{response || ''}</h2>
-            </div>
         </>
     )
 
