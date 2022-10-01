@@ -6,7 +6,7 @@ const createURL = (config) => {
     //     url.concat(`/${x}`);
     // }
     // if(config.query != {}) url.concat('?');
-    if(config.query != {}){
+    if(config.query !== {}){
         url = url.concat('?');
         for(let [key, value] of Object.entries(config.query)){
             url = url.concat(`${key}=${value}&`);
@@ -32,6 +32,7 @@ const useApiCall = () => {
             body: JSON.stringify(body)
         });
         const data = await res.json();
+        console.log(data);
         return data;
 
     }

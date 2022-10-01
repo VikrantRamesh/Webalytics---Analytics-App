@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useApiCall from './hooks/useApiCall';
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
@@ -10,6 +11,7 @@ const useForm = (callback, validate) => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const apiCaller = useApiCall();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -19,17 +21,24 @@ const useForm = (callback, validate) => {
     });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
 
-    setErrors(validate(values));
-    setIsSubmitting(true);
+  const handleSubmit = () => {
+      setErrors(validate(values));
+      setIsSubmitting(true);
   };
 
   useEffect(
     () => {
+
+      const submitData = async () => {
+        const response = await apiCaller({endpoint: 'signup', query: {}},{username : values.username, email : values.email, domain: values.domainname , password : values.password}, 'POST', 'application/json');
+        if(!response.errors){
+          callback();
+        }
+      }
+
       if (Object.keys(errors).length === 0 && isSubmitting) {
-        callback();
+        submitData();
       }
     },
     [errors]

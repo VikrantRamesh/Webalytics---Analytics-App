@@ -7,14 +7,21 @@ const ProtectedComponent = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!authorize()){
-            navigate("/loginform");
-        }
+
+        const authHandler = async() => {
+            const isAuthorized = await authorize();
+            if(!isAuthorized){
+                navigate("/loginform");
+            }
+        } 
+
+        authHandler();
     }, []);
 
     return(
         <>
             <h1>Protected Route Accessed !!!</h1>
+            <span onClick={() => {navigate("/test")}}>Back</span>
         </>
     )
 }
