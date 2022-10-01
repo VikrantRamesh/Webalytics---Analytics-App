@@ -1,6 +1,25 @@
 import React, { useState } from 'react';
 import './Form.css';
+import { useNavigate } from 'react-router-dom';
+import useApiCall from './hooks/useApiCall';
+
 const FormLogin = ( ) => {
+
+  const apiCaller = useApiCall();
+  const navigate = useNavigate();
+  const [error, setError] = useState(false);
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  const handleLogin = async() => {
+    const response = await apiCaller({endpoint: 'login', query: {}},{username, password}, 'POST', 'application/json');
+    if(!response.error){
+      navigate("/protected"); // Change to appropriate route later
+    }else{
+      setError("Invalid Username/Passoword");
+    }
+  }
+
 
 
   return (
@@ -20,7 +39,8 @@ const FormLogin = ( ) => {
             className='form-input'
             type='text'
             name='username'
-            placeholder='Enter your username'
+            placeholder='Enter your username' 
+            onChange = {(event) => setUsername(event.target.value)}
           />
         </div>
         <div className='form-inputs'>
@@ -30,11 +50,11 @@ const FormLogin = ( ) => {
             type='password'
             name='password'
             placeholder='Enter your password'
+            onChange = {(event) => setPassword(event.target.value)}
           />
-
+        {!error || <p>{error}</p> }
         </div>
-        <button className='form-input-btn' type='submit'>
-        
+        <button className='form-input-btn' type='button' onClick={handleLogin}>
           Login
         </button>
         </form>
