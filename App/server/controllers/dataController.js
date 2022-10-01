@@ -1,6 +1,9 @@
 const Customer= require("../models/Customer.js");
 const ServiceCredential = require('../models/ServiceCredentials.js');
+const Analytics = require('../models/Analytics.js');
+const DataPointSchema = require('../models/DataPoint.js');
 const crypto = require('crypto');
+const { default: mongoose } = require("mongoose");
 require('dotenv').config();
 
 // Helper non-exported functions
@@ -46,4 +49,34 @@ module.exports.APIKeyGenerationHandler = async(req, res, next) => {
     res.json({error: false, apiKey : doc.apikey});   
 
     
+}
+
+module.exports.analyticsDataHandler = async (req, res, next) => {
+    const domain = req.query.domain;
+    let doc = await Analytics.findOne({domain: domain});
+    if(doc === null){
+        res.json({error: true, message: 'No Analytics Available'});
+    }else{
+        console.log(doc.data);
+        res.json({error: false, data: doc.data, apiKey: doc.apiKey});
+    }
+
+}
+
+module.exports.feedMockDataHandler = async(req, res, next) => {
+    console.log(req.body);
+    const mockData = {
+        domain: req.body.domain.data,
+        apiKey: req.body.apiKey,
+        data: req.body.data
+    };
+
+    try{
+        const analyticsData = await Analytics.create(mockData);
+        res.json({'error': false, 'status': 'Inserted'});
+    }catch(err){
+        console.log(err);
+        res.json({'error': true, 'status': 'error'});
+    }
+
 }

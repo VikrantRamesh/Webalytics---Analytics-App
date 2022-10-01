@@ -22,11 +22,16 @@ module.exports.loginHandler = async(req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
     console.log(username, password);
+    
+    
     try{
         const customer = await Customer.login(username, password);
+        let doc = await Customer.findOne({username: username});
+        const domain = doc.domain;
         const token = createToken(customer._id, customer.username);
         // Setting the cookies to be sent to the client on logging in
         res.cookie('username', username);
+        res.cookie('domain', domain);
         res.status(200).cookie('jwt', token, {httpOnly:false, maxAge: 3*24*60*60*1000, secure: true}).json({error: false, customerId: customer._id, username: customer.username});
         // res.json({error: false, customerId: customer._id, username: customer.username});
 

@@ -32,4 +32,13 @@ router.post('/api/generateAPIkey', requireAuthMiddleware, (req, res, next) => {
     dataController.APIKeyGenerationHandler(req, res, next);
 })
 
+router.post('/api/analyticsdata', requireAuthMiddleware, (req, res, next) => {
+    dataController.analyticsDataHandler(req, res, next);
+
+})
+
+router.post('/api/testfeedmockdata', requireAuthMiddleware, (req, res, next) => {
+    dataController.feedMockDataHandler(req, res, next);
+})
+
 module.exports = router;

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const DataPointSchema = require('./DataPoint.js'); 
 
 const AnalyticsSchema = new mongoose.Schema({
     domain: {
@@ -9,24 +10,7 @@ const AnalyticsSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    data:[{
-        date: {
-            type: Date,
-            default: Date.now
-        },
-        purchasesMade: {
-            type: Number,
-            default: 0
-        },
-        visitors: {
-            type: Number,
-            default: 0
-        },
-        averageTime: {
-            type: Number,
-            default : 0
-        }
-    }]
+    data:[DataPointSchema]
 
 });
 
