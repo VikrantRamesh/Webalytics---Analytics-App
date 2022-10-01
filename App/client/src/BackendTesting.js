@@ -46,6 +46,7 @@ const BackendTesting = () => {
     const APIKeyHandler = async() => {
         const reqData = await apiCaller({endpoint: 'generateAPIkey', query: {username: 'Dolph'}}, {}, 'POST', 'application/json');
         setResponse(JSON.stringify(reqData));
+    
     }
     
 
