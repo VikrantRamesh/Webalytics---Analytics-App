@@ -4,6 +4,8 @@ const authController = require('../controllers/authController.js');
 const dataController = require('../controllers/dataController.js');
 const requireAuthMiddleware = require('../middleware/authMiddleware.js');
 
+// For now contains all routes
+
 router.post('/api/signup', (req, res, next) => {
     // res.send()
     res.set('Access-Control-Allow-Origin', '*');
@@ -24,6 +26,10 @@ router.post('/api/profile', requireAuthMiddleware, (req, res, next) => {
 
 router.post('/api/authorize', requireAuthMiddleware, (req, res, next) => {
     res.json({error: false, authState : 'authorized'});
+});
+
+router.post('/api/generateAPIkey', requireAuthMiddleware, (req, res, next) => {
+    dataController.APIKeyGenerationHandler(req, res, next);
 })
 
 module.exports = router;
