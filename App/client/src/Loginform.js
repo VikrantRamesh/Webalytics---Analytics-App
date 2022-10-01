@@ -14,7 +14,7 @@ const FormLogin = ( ) => {
   const handleLogin = async() => {
     const response = await apiCaller({endpoint: 'login', query: {}},{username, password}, 'POST', 'application/json');
     if(!response.error){
-      navigate("/protected"); // Change to appropriate route later
+      navigate("/analytics"); // Change to appropriate route later
     }else{
       setError("Invalid Username/Passoword");
     }

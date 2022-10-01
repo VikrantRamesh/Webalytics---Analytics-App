@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch, useNavigate} from "react-router-dom";
-import Form from './Form.js';
-import FormSignup from './FormSignup.js'
-import {Link} from 'react-router-dom';
+
 const Container = styled.div`
   height: 50px;
 `;

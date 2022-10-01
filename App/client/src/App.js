@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import Intro from "./components/Intro";
 import Navbar from "./components/Navbar";
 import Service from "./components/Service";
+import Analytics from "./Analytics";
 
 
 
@@ -68,6 +69,8 @@ function App() {
           <Route path="/footer" element={<Footer />}/>
           <Route path="/signup" element={<Form />} />
           <Route path="/Loginform" element={<Loginform />} />
+          <Route path="/analytics" element={<Analytics />} />
+          
           {/* Backend Testing route */}
           <Route path="/test" element={<BackendTesting/>} />
           <Route path="/protected" element={<ProtectedComponent/>} />

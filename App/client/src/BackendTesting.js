@@ -52,6 +52,31 @@ const BackendTesting = () => {
         setResponse(JSON.stringify(reqData));
     
     }
+
+    const feedMockData = async() => {
+        let arr = new Array(7).fill(0);
+        let dataObj = {
+            apiKey: 'eac803dda25c3e3369399da5125d870f22c9c6ad',
+            domain: cookieFetcher('domain'),
+            data: arr.map(() => {
+                return {
+                    date: `Sat ${Math.floor(Math.random()*20) + 10} Sep 2022`,
+                    purchasesMade : Math.floor(Math.random()*50),
+                    visitors: Math.floor(Math.random()*200),
+                    averageTime: Math.floor(Math.random()*10000) // In seconds
+
+                }
+            })
+        }
+        // for(let i=0; i<10;i++){
+        //     console.log(dataObj);
+        // }
+        console.log(dataObj);
+        const domain = cookieFetcher('domain');
+        console.log(domain.data);
+        const reqData = await apiCaller({endpoint: 'testfeedmockdata', query: {domain: domain.data, apiKey: "eac803dda25c3e3369399da5125d870f22c9c6ad"}}, dataObj, 'POST', 'application/json')
+        setResponse(JSON.stringify(reqData));
+    }
     
 
 
@@ -75,6 +100,8 @@ const BackendTesting = () => {
                </div>
                <br></br>
                 <button type="button" onClick={APIKeyHandler}>Generate/Regenerate API Key</button>
+                <br></br>
+                <button type="button" onClick={feedMockData}>Mock Analytics Data</button>
                 <br></br>
                <Link to="/protected">Protected Route</Link>
                 <br></br>
