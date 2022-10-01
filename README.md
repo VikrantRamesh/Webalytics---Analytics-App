@@ -19,6 +19,7 @@ An adaptable and flexible analytics application which assists a webpage owner to
 -  NodeJS
 -  ExpressJS
 -  MongoDB
+-  MongooseJS
 -  ChartJS
 
 # Our Website
