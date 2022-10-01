@@ -1,0 +1,72 @@
+.data-chart{
+    margin: 2em;
+    width: 70%;
+}
+
+.analytics{
+    /* background-color: red; */
+    margin: auto;
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.big{
+    font-size: 1.3em;
+}
+
+.data-display{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.options{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 0.5em;
+    background: #8080802c;
+    padding: 1em;
+}
+
+.option{
+    margin-left: 5em;
+    padding: 0.8em;
+    transform: scale(1.5);
+}
+
+.option:hover{
+    background: rgba(116, 116, 116, 0.557);
+}
+
+.analytic-section{
+    display: flex;
+    flex-direction: column;
+    background-color: #b3aeae25;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.analytic-visuals{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.analytic-descriptor{
+    width: 30%;
+    font-size: 1em;
+}
