@@ -42,6 +42,11 @@ const BackendTesting = () => {
         const reqData = await apiCaller({endpoint: 'profile', query: {username : value}}, {}, 'POST', 'application/json');
         setResponse(JSON.stringify(reqData));
     }
+
+    const APIKeyHandler = async() => {
+        const reqData = await apiCaller({endpoint: 'generateAPIkey', query: {username: 'Dolph'}}, {}, 'POST', 'application/json');
+        setResponse(JSON.stringify(reqData));
+    }
     
 
 
@@ -63,6 +68,8 @@ const BackendTesting = () => {
                 <input type="text" onChange={(e) => setValue(e.target.value)} id="customer"></input>
                 <button type="button" id="getDetails" onClick={testFunc} style={{'marginLeft' : '1em'}}>GO</button>
                </div>
+               <br></br>
+                <button type="button" onClick={APIKeyHandler}>Generate/Regenerate API Key</button>
                 <br></br>
                <Link to="/protected">Protected Route</Link>
                 <br></br>
