@@ -48,7 +48,14 @@ After validating the data entered and Successful Registration, the user/client i
 
 ### Analytics Page
 
-The user can find his/her data analysis here covering a wide range of aspects that are considered crucial for improving their marketing strategies and product sales
+The user can find his/her data analysis here covering a wide range of aspects that are considered crucial for improving their marketing strategies and product sales. The pictorial representation of the analytics in the form of line charts,bar graphs and pie charts add to the project's ability to generate reports which are user-friendly.
+
+![image](https://user-images.githubusercontent.com/89332177/193434472-86e929e0-2e33-412a-b9ad-cda05d324ec1.png)
+
+![image](https://user-images.githubusercontent.com/89332177/193434538-e3a25f73-b71a-49e1-8681-aef8f16214cb.png)
+
+![image](https://user-images.githubusercontent.com/89332177/193434567-26654c27-acfa-4952-ac17-5e21063b40a5.png)
+
 
 ---
 
