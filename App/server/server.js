@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const routes = require('./routes/authRoutes.js');
+const authroutes = require('./routes/authRoutes.js');
+const analyticsroutes = require('./routes/analyticsRoutes.js');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
@@ -23,7 +24,8 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 
 
 // Processing requests using the routes
-app.use(routes);
+app.use(authroutes);
+app.use(analyticsroutes);
 
 
 app.listen('4573', () => {
