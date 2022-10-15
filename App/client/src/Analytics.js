@@ -37,6 +37,7 @@ const Analytics = () => {
     const [visitorData, setVisitorData] = useState();
     const [averageTime, setaverageTime] = useState();
     const [purchases, setPurchases] = useState();
+    const [analyticsStatus, setAnalyticsStatus] = useState(true); // This state indicates the presence/absence of analytics data
 
     useEffect(() => {
         const authHandler = async() => {
@@ -47,6 +48,9 @@ const Analytics = () => {
 
         const getData = async() => {
             const response = await apiCaller({endpoint: 'analyticsdata', query: {domain: (cookieFetcher('domain')).data}}, {}, 'POST', 'application/json');
+            if(response.error){
+                return setAnalyticsStatus(false);
+            }
             setVisitorData({
                 labels: response.data.map((data) => data.date),
                 datasets: [
@@ -152,12 +156,15 @@ const Analytics = () => {
                 <section className='analytic-visuals'>
                     <div className='analytic-descriptor'>
                     <h2>Visitors: </h2>
-                    <p>A measure of the visitors the website had per day over a time period of a week</p>
+                    <p>A measure of the visitors the website had per day over the time period of a week</p>
                     <h5>Number of Visitors vs Day Plot</h5>
                     </div>
-                    <div className="data-chart">
+                    {!analyticsStatus ? 
+                        <div className='data-chart'><h1>No analytics available at the moment</h1></div> : 
+                        <div className="data-chart">
                         {chartState.chart1 === 'null' || (chartState.chart1 === 'bar' ? <BarChart chartData={visitorData}/> : (chartState.chart1 === 'line' ? <LineChart chartData={visitorData}/> : <PieChart chartData={visitorData}/>))}
-                    </div>
+                    </div>}
+                    
                 </section>
 
             </section>
@@ -170,12 +177,14 @@ const Analytics = () => {
                 <section className='analytic-visuals'>
                     <div className='analytic-descriptor'>
                     <h2>Average Time: </h2>
-                    <p>A measure of how long visitors spent in the website had per day over a time period of a week</p>
+                    <p>A measure of how long visitors spent in the website over the time period of a week</p>
                     <h5>Average Time vs Day Plot</h5>
                     </div>
-                    <div className="data-chart">
-                    { chartState.chart2 === 'null' || (chartState.chart2 === 'bar' ? <BarChart chartData={averageTime}/> : chartState.chart2 === 'line' ? <LineChart chartData={averageTime}/> : <PieChart chartData={averageTime}/>)}
-                    </div>
+                    {!analyticsStatus ?
+                        <div className='data-chart'><h1>No analytics available at the moment</h1></div> : 
+                        <div className="data-chart">
+                     { chartState.chart2 === 'null' || (chartState.chart2 === 'bar' ? <BarChart chartData={averageTime}/> : chartState.chart2 === 'line' ? <LineChart chartData={averageTime}/> : <PieChart chartData={averageTime}/>)}
+                     </div>}
                 </section>
 
             </section>
@@ -188,12 +197,14 @@ const Analytics = () => {
                 <section className='analytic-visuals'>
                     <div className='analytic-descriptor'>
                     <h2>Purchases: </h2>
-                    <p>A measure of how many purchases the website had per day over a time period of a week</p>
+                    <p>A measure of how many purchases the website had over the time period of a week</p>
                     <h5>Number of Purchases vs Day Plot</h5>
                     </div>
-                    <div className="data-chart">
+                    {!analyticsStatus ?
+                        <div className='data-chart'><h1>No analytics available at the moment</h1></div> : 
+                        <div className="data-chart">
                     {chartState.chart3 === 'null' || (chartState.chart3 === 'bar' ? <BarChart chartData={purchases}/> : chartState.chart3 === 'line' ? <LineChart chartData={purchases}/> : <PieChart chartData={purchases}/>)}
-                    </div>
+                    </div>}
                 </section>
 
             </section>
